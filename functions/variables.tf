@@ -23,10 +23,7 @@ variable "environment" {
 }
 
 variable "instances" {
-  default = {
-    Rabbitmq = "t3.micro"
-    Redis    = "t3.micro"
-  }
+  default = ["mysql", "rabbitmq"]
 }
 
 variable "zone_id" {
@@ -35,4 +32,11 @@ variable "zone_id" {
 
 variable "domain_name" {
   default = "daws84.cyou"
+}
+
+variable "common_tags" {
+  default = {
+    Namewas = "roboshop"
+    type = "e-commerce"
+  }
 }

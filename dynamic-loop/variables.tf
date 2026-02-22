@@ -36,3 +36,15 @@ variable "zone_id" {
 variable "domain_name" {
   default = "daws84.cyou"
 }
+
+variable "ingress" {
+  default = [{
+    from_port = 0
+    to_port   = 0
+    },
+    {
+      from_port = 8080
+      to_port   = 8080
+  }]
+
+}

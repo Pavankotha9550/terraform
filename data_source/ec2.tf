@@ -1,21 +1,20 @@
- resource "aws_instance" "server_terraform"{
-  ami="ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"
-  #vpc_security_group_ids=[aws_security_group.allow_all2.id]
-  vpc_security_group_ids=local.sg_id
+resource "aws_instance" "server_terraform" {
+  ami                    = data.aws_ami.example.id
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.allow_all2.id]
   tags = {
     Name = "server terraform"
   }
 
- }
- 
- 
- 
- resource "aws_security_group" "allow_all2" {
+}
+
+
+
+resource "aws_security_group" "allow_all2" {
   name        = "allow_all2"
   description = "Allow TLS inbound traffic and all outbound traffic"
-  
-  ingress{
+
+  ingress {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
