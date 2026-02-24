@@ -1,0 +1,6 @@
+bucket= "daws-prod.cyou"
+    key="remote-state-prod"
+    region= "us-east-1"
+    #dynamodb_table= "daws84.cyou"
+    encrypt= "true"
+    use_lockfile="true"

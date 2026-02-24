@@ -1,20 +1,17 @@
  resource "aws_instance" "server_terraform"{
+  count=length(var.instances)
   ami="ami-0220d79f3f480ecf5"
   instance_type = "t3.micro"
-  #vpc_security_group_ids=[aws_security_group.allow_all2.id]
-  vpc_security_group_ids=local.sg_id
+  vpc_security_group_ids=[aws_security_group.allow_all2.id]
   tags = {
-    Name = "server terraform",
-    Environment= terraform.workspace
-    
+    Name = "${var.environment}-${var.instances[count.index]}"
   }
-
  }
  
  
  
  resource "aws_security_group" "allow_all2" {
-  name        = "allow_all2"
+  name        = "${var.environment}-${var.sg_id}"
   description = "Allow TLS inbound traffic and all outbound traffic"
   
   ingress{
@@ -34,7 +31,7 @@
   }
 
   tags = {
-    Name = "allow_all 2",
-    Environment= terraform.workspace
+    Name= "${var.environment}-${var.sg_id}"
+    instance= "t3.micro"
   }
 }

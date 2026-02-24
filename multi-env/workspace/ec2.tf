@@ -4,9 +4,8 @@
   #vpc_security_group_ids=[aws_security_group.allow_all2.id]
   vpc_security_group_ids=local.sg_id
   tags = {
-    Name = "server terraform",
+    Name = "${terraform.workspace}-${"server"}"
     Environment= terraform.workspace
-    
   }
 
  }
@@ -34,7 +33,6 @@
   }
 
   tags = {
-    Name = "allow_all 2",
-    Environment= terraform.workspace
+    Name = "allow_all 2"
   }
 }
